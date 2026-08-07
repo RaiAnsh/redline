@@ -1,0 +1,257 @@
+@import "tailwindcss";
+
+:root {
+  /* Brand palette — pulled from the Redline Contracting logo (red / black / chrome) */
+  --color-black: #0a0a0a;
+  --color-void: #050505;
+  --color-charcoal: #161616;
+  --color-steel: #29292b;
+  --color-graphite: #3a3a3c;
+  --color-grey: #8e8e93;
+
+  --color-red: #e10600;
+  --color-red-dark: #8a0100;
+  --color-red-light: #ff3b32;
+
+  --color-chrome: #c9c8c8;
+  --color-chrome-dark: #6f6e6e;
+
+  --color-silver: #c7c7cc;
+  --color-fog: #f4f4f5;
+  --color-white: #f5f5f4;
+  --color-line: rgba(245, 245, 244, 0.1);
+
+  --background: var(--color-black);
+  --foreground: var(--color-white);
+
+  /* Container widths */
+  --container-content: 1280px;
+  --container-wide: 1440px;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-brand-black: var(--color-black);
+  --color-brand-void: var(--color-void);
+  --color-brand-charcoal: var(--color-charcoal);
+  --color-brand-steel: var(--color-steel);
+  --color-brand-graphite: var(--color-graphite);
+  --color-brand-grey: var(--color-grey);
+
+  --color-brand-red: var(--color-red);
+  --color-brand-red-dark: var(--color-red-dark);
+  --color-brand-red-light: var(--color-red-light);
+
+  --color-brand-chrome: var(--color-chrome);
+  --color-brand-chrome-dark: var(--color-chrome-dark);
+
+  --color-brand-silver: var(--color-silver);
+  --color-brand-fog: var(--color-fog);
+  --color-brand-white: var(--color-white);
+  --color-brand-line: var(--color-line);
+
+  --font-display: var(--font-anton);
+  --font-sans: var(--font-inter);
+
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --breakpoint-xs: 30rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: var(--color-red);
+  color: var(--color-white);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-red);
+  outline-offset: 3px;
+}
+
+/* Fluid display type scale — condensed industrial headline face */
+.text-display-1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  line-height: 0.98;
+  font-size: clamp(2.5rem, 1.6rem + 4vw, 6.5rem);
+}
+
+.text-display-2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  line-height: 1.02;
+  font-size: clamp(1.9rem, 1.4rem + 2.2vw, 4rem);
+}
+
+.text-display-3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  line-height: 1.08;
+  font-size: clamp(1.5rem, 1.2rem + 1vw, 2.25rem);
+}
+
+.text-eyebrow {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.72rem;
+}
+
+/* Underline-reveal hover, used for inline text links */
+.link-underline {
+  position: relative;
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 300ms ease;
+}
+
+.link-underline:hover,
+.link-underline:focus-visible {
+  background-size: 100% 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link-underline {
+    transition: none;
+  }
+}
+
+/* ── Chrome / brushed-metal text, used sparingly for the wordmark accent ── */
+.text-chrome {
+  background: linear-gradient(
+    180deg,
+    #f4f4f4 0%,
+    #cfcfcf 22%,
+    #8b8b8b 48%,
+    #dcdcdc 62%,
+    #6c6c6c 80%,
+    #f0f0f0 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── Grungey grain overlay — layered on hero/CTA sections for texture ── */
+.grain-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  opacity: 0.35;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+/* ── Diagonal hazard-stripe divider, small red/black accent bar ── */
+.hazard-stripe {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--color-red) 0px,
+    var(--color-red) 14px,
+    var(--color-black) 14px,
+    var(--color-black) 28px
+  );
+}
+
+/* ── Scratched / distressed edge mask on cards & images ── */
+.grunge-edge {
+  position: relative;
+  clip-path: polygon(
+    0% 4px,
+    2% 0%,
+    98% 0%,
+    100% 3px,
+    100% calc(100% - 5px),
+    97% 100%,
+    3% 100%,
+    0% calc(100% - 3px)
+  );
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   3D Spin Logo — pure CSS card-spin (front face + back face only, no
+   filler edges) so it's just the logo artwork itself rotating in 3D,
+   turning edge-on and back around, similar to the delmarcontracting.ca
+   hero treatment but without any boxy card outline.
+   ══════════════════════════════════════════════════════════════════════ */
+.spin-stage {
+  perspective: 1400px;
+}
+
+.spin-cube {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: spin3d 9s linear infinite;
+}
+
+.spin-cube.spin-cube--slow {
+  animation-duration: 16s;
+}
+
+.spin-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.spin-face--front {
+  transform: translateZ(calc(var(--spin-depth, 22px) / 2));
+}
+
+.spin-face--back {
+  transform: rotateY(180deg) translateZ(calc(var(--spin-depth, 22px) / 2));
+}
+
+@keyframes spin3d {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spin-cube {
+    animation: none;
+  }
+}
