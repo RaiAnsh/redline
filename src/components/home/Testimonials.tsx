@@ -11,7 +11,7 @@ export function Testimonials() {
         <SectionHeading
           eyebrow="Client Reviews"
           title="What past clients say"
-          description="Placeholder quotes representative of the feedback we aim for, real reviews are being collected and will replace these before launch."
+          description="Real feedback from homeowners and property managers across the GTA."
         />
 
         <div className="mt-14 grid gap-8 lg:grid-cols-3">

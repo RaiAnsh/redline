@@ -27,6 +27,11 @@ export function Hero() {
 
       {/* Faded SpinLogo watermark, kept fully on-screen so it doesn't fight headline contrast */}
       <SpinLogo
+        size={120}
+        depth={8}
+        className="pointer-events-none absolute right-4 top-24 opacity-60 lg:hidden"
+      />
+      <SpinLogo
         size={340}
         depth={18}
         className="pointer-events-none absolute right-10 top-1/2 hidden -translate-y-1/2 opacity-70 lg:block"
