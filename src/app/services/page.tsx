@@ -10,9 +10,9 @@ import { pageMetadata } from "@/lib/seo";
 import { siteConfig } from "@/data/siteConfig";
 
 export const metadata: Metadata = pageMetadata({
-  title: "General Contracting Services",
+  title: "General Contracting Services in Toronto",
   description:
-    "HVAC, plumbing, electrical, drywall, painting, flooring, and full renovations from Redline Contracting across the GTA.",
+    "HVAC, plumbing, electrical, drywall, painting, flooring, and full renovations from Redline Contracting, serving Toronto and the entire GTA.",
   path: "/services",
 });
 
@@ -21,7 +21,7 @@ export default function ServicesPage() {
     <>
       <PageHero
         eyebrow="Services"
-        title="General contracting work across the GTA"
+        title="General contracting work across Toronto and the GTA"
         description={`From emergency calls to full renovations, ${siteConfig.name} brings the same fast, no-nonsense standard to every trade.`}
       />
 

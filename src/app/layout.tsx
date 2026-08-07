@@ -21,17 +21,27 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} | General Contractor GTA`,
+    default: `${siteConfig.name} | General Contractor in Toronto & the GTA`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  verification: {
+    google: "peSnIG6sE7u8_VWZKszjn9V_BxuobYgH_qwO9ZFVMxY",
+  },
   openGraph: {
     title: siteConfig.name,
     description: siteConfig.description,
     url: siteConfig.url,
     siteName: siteConfig.name,
+    images: [{ url: "/open_graph.png", width: 1536, height: 1024 }],
     locale: "en_CA",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: ["/open_graph.png"],
   },
 };
 

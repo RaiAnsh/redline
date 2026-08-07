@@ -37,11 +37,21 @@ export function localBusinessJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "GeneralContractor",
+    "@id": `${siteConfig.url}/#business`,
     name: siteConfig.name,
+    alternateName: ["RedLine Contracting", siteConfig.legalName],
     description: siteConfig.description,
     url: siteConfig.url,
+    logo: `${siteConfig.url}/logo.png`,
+    image: `${siteConfig.url}/open_graph.png`,
     telephone: siteConfig.contacts[0]?.phone,
     email: siteConfig.email,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Toronto",
+      addressRegion: "ON",
+      addressCountry: "CA",
+    },
     areaServed: siteConfig.serviceArea.cities.map((city) => ({
       "@type": "City",
       name: city,

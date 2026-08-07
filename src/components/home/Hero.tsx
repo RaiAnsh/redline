@@ -34,10 +34,10 @@ export function Hero() {
 
       <Container className="relative z-10 pb-20 pt-48 sm:pb-28">
         <div className="mb-6">
-          <Eyebrow>General Contracting &middot; Greater Toronto Area</Eyebrow>
+          <Eyebrow>General Contracting &middot; Toronto &amp; the GTA</Eyebrow>
         </div>
         <h1 className="text-display-1 max-w-3xl text-brand-white">
-          GTA&apos;s <span className="text-chrome">General</span> Contracting Experts
+          Toronto&apos;s <span className="text-chrome">General</span> Contracting Experts
         </h1>
         <p className="mt-6 max-w-xl text-base leading-relaxed text-brand-white/85 sm:text-lg">
           Redline Contracting handles HVAC, plumbing, electrical, drywall, painting, flooring,
