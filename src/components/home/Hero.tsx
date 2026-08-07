@@ -27,9 +27,9 @@ export function Hero() {
 
       {/* Faded SpinLogo watermark, kept fully on-screen so it doesn't fight headline contrast */}
       <SpinLogo
-        size={120}
-        depth={8}
-        className="pointer-events-none absolute right-4 top-24 opacity-60 lg:hidden"
+        size={280}
+        depth={10}
+        className="pointer-events-none absolute left-1/2 top-[62%] -translate-x-1/2 -translate-y-1/2 opacity-15 lg:hidden"
       />
       <SpinLogo
         size={340}
