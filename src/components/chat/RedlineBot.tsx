@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
-import { faqEntries, matchFaq } from "@/data/faq";
+import { suggestedFaqEntries, matchFaq } from "@/data/faq";
 import { siteConfig } from "@/data/siteConfig";
 import { cn } from "@/lib/cn";
 
@@ -28,12 +28,21 @@ export function RedlineBot() {
   const [messages, setMessages] = useState<Message[]>([{ id: nextId(), from: "bot", text: GREETING }]);
   const [input, setInput] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const panelId = useId();
 
   useEffect(() => {
     if (!scrollRef.current) return;
     scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
   }, [messages, open]);
+
+  // Autofocus the input when the panel opens, and make sure it's on top of
+  // any pending open-transition so the caret actually lands in the box.
+  useEffect(() => {
+    if (!open) return;
+    const t = setTimeout(() => inputRef.current?.focus(), 50);
+    return () => clearTimeout(t);
+  }, [open]);
 
   function respond(rawText: string) {
     const text = rawText.trim();
@@ -98,7 +107,7 @@ export function RedlineBot() {
           ))}
 
           <div className="flex flex-wrap gap-2 pt-1">
-            {faqEntries.map((entry) => (
+            {suggestedFaqEntries.map((entry) => (
               <button
                 key={entry.id}
                 type="button"
@@ -119,9 +128,19 @@ export function RedlineBot() {
           className="flex items-center gap-2 border-t border-brand-line bg-brand-black p-3"
         >
           <input
+            ref={inputRef}
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => {
+              // Belt-and-suspenders: some mobile keyboards/IME flows fire
+              // Enter without triggering the form's native submit, so
+              // handle it explicitly here too.
+              if (e.key === "Enter") {
+                e.preventDefault();
+                respond(input);
+              }
+            }}
             placeholder="Ask a question..."
             className="min-w-0 flex-1 rounded-sm border border-brand-line bg-brand-charcoal px-3 py-2 text-sm text-brand-white placeholder:text-brand-grey focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-red"
           />

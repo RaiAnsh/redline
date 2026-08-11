@@ -12,6 +12,8 @@ export type FaqEntry = {
   /** Lowercase keywords, any one of which triggers this entry from free text. */
   keywords: string[];
   answer: string;
+  /** Set false to keep an entry matchable but hide it from the chip list (low-priority topics). */
+  suggested?: boolean;
 };
 
 const contactLine = siteConfig.contacts
@@ -67,7 +69,36 @@ const tradeSynonyms = [
   "basement",
 ];
 
+// Small talk isn't a "question" a customer would click as a chip, but it
+// should still get a real reply instead of falling through to the generic
+// fallback, that's most of what "the bot doesn't respond" complaints turn
+// out to be.
+const smallTalk: FaqEntry[] = [
+  {
+    id: "greeting",
+    question: "Hi",
+    suggested: false,
+    keywords: ["hi", "hello", "hey", "yo", "sup", "good morning", "good afternoon", "good evening"],
+    answer: "Hey there! Ask me about services, hours, service area, pricing, or how to get a quote, or use one of the buttons below.",
+  },
+  {
+    id: "thanks",
+    question: "Thanks",
+    suggested: false,
+    keywords: ["thank", "thanks", "appreciate", "cheers"],
+    answer: "Anytime. If anything else comes up, I'm right here, or call us directly for anything urgent.",
+  },
+  {
+    id: "how-are-you",
+    question: "How are you?",
+    suggested: false,
+    keywords: ["how are you", "how's it going", "hows it going", "what's up", "whats up"],
+    answer: "Doing well, thanks for asking! What can I help you with, services, pricing, hours, or your service area?",
+  },
+];
+
 export const faqEntries: FaqEntry[] = [
+  ...smallTalk,
   {
     id: "services",
     question: "What services do you offer?",
@@ -107,6 +138,7 @@ export const faqEntries: FaqEntry[] = [
   {
     id: "licensed",
     question: "Are you licensed and insured?",
+    suggested: false,
     keywords: ["licensed", "insured", "insurance", "license", "certified", "permit", "legit", "trust"],
     answer: `Yes, all work is handled by a licensed, insured crew, and permits or inspections are coordinated where required.`,
   },
@@ -123,6 +155,8 @@ export const faqEntries: FaqEntry[] = [
     answer: `You can reach us at ${contactLine}, or by email at ${siteConfig.email}.`,
   },
 ];
+
+export const suggestedFaqEntries = faqEntries.filter((entry) => entry.suggested !== false);
 
 export function matchFaq(input: string): FaqEntry | null {
   const normalized = input.toLowerCase();
