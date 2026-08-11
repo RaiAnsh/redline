@@ -41,6 +41,12 @@ export const siteConfig = {
     ],
   },
 
+  // PLACEHOLDER — confirm actual office/dispatch hours with the client.
+  hours: {
+    standard: "Monday to Saturday, 7 AM to 7 PM",
+    emergency: "24/7 for emergencies (burst pipes, no heat, no power)",
+  },
+
   // Do not publish an address until the client confirms one exists to share publicly.
   address: null as null | {
     street: string;

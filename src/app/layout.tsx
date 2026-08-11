@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Anton, Inter } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { RedlineBot } from "@/components/chat/RedlineBot";
 import { siteConfig } from "@/data/siteConfig";
 import { localBusinessJsonLd } from "@/lib/seo";
 import "./globals.css";
@@ -63,6 +64,7 @@ export default function RootLayout({
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
+        <RedlineBot />
       </body>
     </html>
   );

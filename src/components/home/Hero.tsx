@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -8,17 +7,25 @@ import { siteConfig } from "@/data/siteConfig";
 export function Hero() {
   return (
     <section className="relative flex min-h-[100svh] w-full items-end overflow-hidden bg-brand-black">
-      <Image
-        src="https://images.unsplash.com/photo-1517935706615-2717063c2225?w=2400&q=80&auto=format&fit=crop"
-        alt=""
+      {/* Cinematic drone footage of the Toronto skyline, baked as a forward+reverse
+          boomerang loop so it plays seamlessly forever with the native `loop` attribute,
+          no JS reverse-playback hacks needed. Separate mobile/desktop sources keep the
+          payload small on phones. */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        poster="/video/hero-poster.jpg"
         aria-hidden="true"
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover"
-      />
+        className="absolute inset-0 h-full w-full object-cover"
+      >
+        <source media="(min-width: 1024px)" src="/video/hero-boomerang-desktop.mp4" type="video/mp4" />
+        <source src="/video/hero-boomerang-mobile.mp4" type="video/mp4" />
+      </video>
 
-      {/* Gradient scrim for nav/text legibility over the skyline photo */}
+      {/* Gradient scrim for nav/text legibility over the skyline footage */}
       <div
         aria-hidden
         className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/40"

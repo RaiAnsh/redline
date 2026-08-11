@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Wordmark } from "@/components/ui/Wordmark";
 import { Button } from "@/components/ui/Button";
@@ -96,13 +97,22 @@ export function Footer() {
           <p>
             &copy; {year} {siteConfig.legalName}. All rights reserved.
           </p>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap items-center gap-6">
             <Link href="/privacy-policy" className="link-underline">
               Privacy Policy
             </Link>
             <Link href="/terms" className="link-underline">
               Terms
             </Link>
+            <a
+              href="https://anshrai.com/arweb"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-underline flex items-center gap-1.5 text-brand-grey"
+            >
+              <Image src="/arweb-icon.png" alt="" width={16} height={16} className="opacity-80" />
+              Built by Arweb
+            </a>
           </div>
         </div>
       </Container>

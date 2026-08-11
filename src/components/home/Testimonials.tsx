@@ -18,7 +18,7 @@ export function Testimonials() {
           {shown.map((t) => (
             <figure
               key={t.author + t.date}
-              className="grunge-edge flex h-full flex-col bg-brand-black p-8"
+              className="grunge-edge flex h-full flex-col bg-brand-black p-8 transition-all duration-300 hover:-translate-y-1 hover:bg-brand-steel/40"
             >
               <blockquote className="flex-1 text-[15px] leading-relaxed text-brand-silver">
                 &ldquo;{t.quote}&rdquo;

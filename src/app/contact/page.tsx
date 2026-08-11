@@ -56,6 +56,11 @@ export default function ContactPage() {
                   <p className="text-eyebrow text-brand-grey">Service Area</p>
                   <p className="mt-1">{siteConfig.serviceArea.statement}</p>
                 </li>
+                <li>
+                  <p className="text-eyebrow text-brand-grey">Hours</p>
+                  <p className="mt-1">{siteConfig.hours.standard}</p>
+                  <p className="mt-1 text-brand-grey">{siteConfig.hours.emergency}</p>
+                </li>
               </ul>
             </div>
 

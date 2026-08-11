@@ -4,3 +4,6 @@ out/
 .env*
 !.env.example
 .DS_Store
+
+# Raw source video (93MB, unprocessed) — processed/compressed versions live in public/video/
+/video/

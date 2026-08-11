@@ -5,14 +5,14 @@ import { cn } from "@/lib/cn";
 type Variant = "primary" | "primaryOnDark" | "secondary" | "ghost";
 
 const base =
-  "inline-flex min-h-[48px] items-center justify-center gap-2 px-7 text-sm font-medium tracking-wide transition-colors duration-300 rounded-[2px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-40 disabled:pointer-events-none";
+  "inline-flex min-h-[48px] items-center justify-center gap-2 px-7 text-sm font-medium tracking-wide transition-all duration-300 rounded-[2px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-40 disabled:pointer-events-none active:scale-[0.97]";
 
 // Whole site is dark by default now (bg-brand-black), so every variant
 // below is tuned to stay legible on charcoal/black/photo backgrounds.
 const variants: Record<Variant, string> = {
   // Main red CTA — "Get a Free Quote", form submits, etc.
   primary:
-    "bg-brand-red text-brand-white hover:bg-brand-red-dark focus-visible:outline-brand-red-light",
+    "bg-brand-red text-brand-white shadow-[0_0_0_rgba(225,6,0,0)] hover:bg-brand-red-dark hover:shadow-[0_8px_24px_-8px_rgba(225,6,0,0.6)] focus-visible:outline-brand-red-light",
   // High-contrast white button, for use over busy hero photography where a
   // red button could get lost against similarly-toned imagery.
   primaryOnDark:
