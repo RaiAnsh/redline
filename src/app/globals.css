@@ -255,3 +255,44 @@ body {
     animation: none;
   }
 }
+
+/* ── RedlineBot launcher glow, draws the eye without being obnoxious ── */
+@keyframes bot-pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(225, 6, 0, 0.55), 0 4px 20px rgba(225, 6, 0, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(225, 6, 0, 0), 0 4px 28px rgba(225, 6, 0, 0.55);
+  }
+}
+
+.bot-launcher-glow {
+  animation: bot-pulse-glow 2.4s ease-in-out infinite;
+}
+
+@keyframes bot-typing-dot {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-3px);
+    opacity: 1;
+  }
+}
+
+.bot-typing-dot {
+  animation: bot-typing-dot 1.1s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bot-launcher-glow {
+    animation: none;
+  }
+  .bot-typing-dot {
+    animation: none;
+  }
+}
