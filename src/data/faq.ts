@@ -108,7 +108,7 @@ export const faqEntries: FaqEntry[] = [
   {
     id: "hours",
     question: "What are your hours?",
-    keywords: ["hour", "open", "close", "available", "when can"],
+    keywords: ["hour", "hours", "open", "close", "available", "when can"],
     answer: `Standard hours are ${siteConfig.hours.standard}. For anything urgent, we're ${siteConfig.hours.emergency.toLowerCase()}.`,
   },
   {
@@ -132,7 +132,7 @@ export const faqEntries: FaqEntry[] = [
   {
     id: "emergency",
     question: "Do you handle emergencies?",
-    keywords: ["emergency", "urgent", "burst pipe", "no heat", "no power", "flood", "asap", "right now", "immediately"],
+    keywords: ["emergency", "emergencies", "urgent", "burst pipe", "no heat", "no power", "flood", "asap", "right now", "immediately"],
     answer: `Yes. Burst pipes, no heat, no power, storm damage, we treat those as a priority and dispatch fast. Call ${contactLine} directly for anything urgent, don't wait on a form.`,
   },
   {
@@ -158,7 +158,21 @@ export const faqEntries: FaqEntry[] = [
 
 export const suggestedFaqEntries = faqEntries.filter((entry) => entry.suggested !== false);
 
+function escapeRegExp(value: string) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+// Short single-word keywords (like the greeting "hi"/"yo") need word-boundary
+// matching, otherwise they false-positive as substrings of unrelated words,
+// "hi" inside "this", "yo" inside "you"/"your", which was swallowing real
+// questions into the greeting reply. Multi-word phrases are safe as plain
+// substring checks since collisions there are effectively impossible.
+function keywordMatches(keyword: string, normalizedInput: string) {
+  if (keyword.includes(" ")) return normalizedInput.includes(keyword);
+  return new RegExp(`\\b${escapeRegExp(keyword)}\\b`, "i").test(normalizedInput);
+}
+
 export function matchFaq(input: string): FaqEntry | null {
   const normalized = input.toLowerCase();
-  return faqEntries.find((entry) => entry.keywords.some((k) => normalized.includes(k))) ?? null;
+  return faqEntries.find((entry) => entry.keywords.some((k) => keywordMatches(k, normalized))) ?? null;
 }
